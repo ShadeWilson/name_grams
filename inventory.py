@@ -27,14 +27,17 @@ class LetterInventory:
 				self.inventory[letter] += v
 			else:
 				self.inventory[letter] = v
-			self.size += 1
+			self.size += v
 
 
 	def subtract(self, other):
 		for letter, v in other.inventory.items():
 			if letter in self.inventory:
 				self.inventory[letter] -= v
-				if self.inventory[letter] < 0:
+				self.size -= v
+				new_count = self.inventory[letter]
+				if new_count < 0:
 					self.inventory[letter] = 0
-				self.size -= 1
+					self.size -= new_count
+				
 
