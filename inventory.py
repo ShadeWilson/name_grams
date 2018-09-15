@@ -1,10 +1,15 @@
+import re
+
 class LetterInventory:
 
 	def __init__(self, data):
 		self.inventory = {}
 		self.size = 0
 		
-		for letter in list(data.lower()):
+		# sanitize string: alphabetic only
+		data = re.sub(r'[^a-zA-Z]', "", data).lower()
+
+		for letter in list(data):
 			if letter in self.inventory:
 				self.inventory[letter] += 1
 			else:
@@ -39,5 +44,9 @@ class LetterInventory:
 				if new_count < 0:
 					self.inventory[letter] = 0
 					self.size -= new_count
+
+
+	def is_empty(self):
+		return self.size == 0
 				
 
