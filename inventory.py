@@ -40,13 +40,11 @@ class LetterInventory:
 	def subtract(self, other):
 		new = self.copy()
 		for letter, v in other.inventory.items():
-			if letter in new.inventory:
+			if letter in new.inventory and new.inventory[letter] >= v:
 				new.inventory[letter] -= v
 				new.size -= v
-				new_count = new.inventory[letter]
-				if new_count < 0:
-					new.inventory[letter] = 0
-					new.size -= new_count
+			else:
+				return None
 		return new
 
 
