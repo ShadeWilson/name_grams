@@ -14,6 +14,7 @@ solver = AnagramSolver(dict_names)
 
 solutions = solver.solve(names_inventory, 2)
 
+print("Anagram solutions for {}:".format(", ".join(p.parse(name_file))))
 for s in solutions:
 	print(s)
 

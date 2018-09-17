@@ -13,12 +13,13 @@ class AnagramSolver:
 
 
 
-	def solve(self, inventory, num_words):
+	def solve(self, inventory, max_words):
 		self.solution = [] # clear last solution
-		solve_helper(self, inventory, num_words, [])
+		self.solve_helper(inventory, max_words, [])
+		return self.solution
 
 
-	def solve_helper(self, inventory, num_words, words):
+	def solve_helper(self, inventory, max_words, words):
 		"""
 		Pass in a letter inventory and a number of
 		words to solve for. Returns a list of lists, 
@@ -27,16 +28,16 @@ class AnagramSolver:
 		AnagramSolver's word dictionary
 		"""
 		# base case 1: we're out of letters
-		if inventory.is_empty:
-			self.solution.append(words)
-		elif num_words == 0: # base case 2: reached the word limit before running out of letters
+		if inventory.is_empty():
+			self.solution.append(list(words))
+		elif max_words == 0: # base case 2: reached the word limit before running out of letters
 			return 
 		else: # recursive case: backtrack through all words in dictionary
-			for w in self.dictionary:
-				choose = inventory.subtract(self.dictionary[w])
+			for w, inv in self.dictionary.items():
+				choose = inventory.subtract(inv)
 				if choose != None: # if we can subtract word from inventory
 					words.append(w)
-					solve_helper(self, choose, num_words - 1, words)
+					self.solve_helper(choose, max_words - 1, words)
 					words.remove(w)
 
 

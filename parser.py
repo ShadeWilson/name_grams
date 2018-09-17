@@ -30,7 +30,7 @@ class Parser:
 		inventory = LetterInventory("")
 		l = self.parse(file)
 		for word in l:
-			inventory.add(LetterInventory(word))
+			inventory = inventory.add(LetterInventory(word))
 
 		return inventory
 
