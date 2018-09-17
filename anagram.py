@@ -12,8 +12,19 @@ class AnagramSolver:
 		self.solution = [] # set of anagram solutions, maybe shouldnt be an attribute
 
 
+	def screen_dict(self, inventory):
+		"""
+		Screen all words in dictionary, removing those that
+		don't match the inventory at all. Mutates 
+		self.dictionary
+		"""
+		for word, inv in self.dictionary.copy().items():
+			if inventory.subtract(inv) == None:
+				del self.dictionary[word]
+
 
 	def solve(self, inventory, max_words):
+		self.screen_dict(inventory)
 		self.solution = [] # clear last solution
 		self.solve_helper(inventory, max_words, [])
 		return self.solution
@@ -41,6 +52,6 @@ class AnagramSolver:
 				if choose != None: # if we can subtract word from inventory
 					words.append(w)
 					self.solve_helper(choose, max_words - 1, words)
-					words.remove(w)
+					words.pop()
 
 

@@ -1,11 +1,11 @@
 from anagram import AnagramSolver
 from parser import Parser
 
-name_file = "pbfs.txt"
-dictionary = "names.txt"
+name_file = "simple_names.txt"
 
 max_words = input("What is the max number of words allowed?  ")
-
+dictionary = str(input("Which dictionary do you want to use?  "))
+dictionary += ".txt"
 
 p = Parser()
 
