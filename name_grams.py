@@ -1,7 +1,7 @@
 from anagram import AnagramSolver
 from parser import Parser
 
-name_file = "simple_names.txt"
+name_file = "pbfs.txt"
 dictionary = "names.txt"
 
 max_words = input("What is the max number of words allowed?  ")
