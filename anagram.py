@@ -9,7 +9,7 @@ class AnagramSolver:
 		inventories together to initialize a letter box
 		"""
 		self.dictionary = words
-		self.solution = [] # list of anagram solutions, maybe shouldnt be an attribute
+		self.solution = [] # set of anagram solutions, maybe shouldnt be an attribute
 
 
 
@@ -29,7 +29,10 @@ class AnagramSolver:
 		"""
 		# base case 1: we're out of letters
 		if inventory.is_empty():
-			self.solution.append(list(words))
+			word_set = set(words)
+			if not word_set in self.solution: # check so different permutations of words are dropped
+				print(words)
+				self.solution.append(word_set)
 		elif max_words == 0: # base case 2: reached the word limit before running out of letters
 			return 
 		else: # recursive case: backtrack through all words in dictionary

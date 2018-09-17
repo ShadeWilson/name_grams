@@ -53,4 +53,7 @@ class LetterInventory:
 				
 
 	def copy(self):
-		return LetterInventory(self.__str__())
+		new = LetterInventory("")
+		new.inventory = self.inventory.copy()
+		new.size = self.size
+		return new

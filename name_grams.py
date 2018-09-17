@@ -2,7 +2,9 @@ from anagram import AnagramSolver
 from parser import Parser
 
 name_file = "simple_names.txt"
-dictionary = "pbfs.txt"
+dictionary = "names.txt"
+
+max_words = input("What is the max number of words allowed?  ")
 
 
 p = Parser()
@@ -12,7 +14,7 @@ dict_names = p.inventory_dict(dictionary)
 
 solver = AnagramSolver(dict_names)
 
-solutions = solver.solve(names_inventory, 2)
+solutions = solver.solve(names_inventory, max_words)
 
 print("Anagram solutions for {}:".format(", ".join(p.parse(name_file))))
 for s in solutions:
